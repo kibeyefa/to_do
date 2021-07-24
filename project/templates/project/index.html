@@ -36,10 +36,10 @@
                 </li>
                 {% endif %}
             </ul>
-            <form method="POST">
+            <form method="POST" style="display: flex; justify-content:space-between">
                 {% csrf_token %}
                 {{form.name}}
-                <input type="submit" class="btn-sm btn btn-secondary" value="Submit">
+                <input type="submit" class="btn-sm btn btn-secondary m-1" value="Submit">
             </form>
         </div>
     </div>
