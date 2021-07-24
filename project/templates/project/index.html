@@ -55,13 +55,17 @@
                 <p class="col-md-8 fs-4">Try adding tasks. Use the from at the top right to add or tasks</p>
             </div>
         </div>
+        <form method="POST" style="display: flex; justify-content:space-between">
+            {% csrf_token %}
+            {{form.name}}
+            <input type="submit" class="btn btn-lg btn-secondary" value="Submit">
+        </form>
     {% else  %}
         <div class="list-group">
-           
             <form method="POST" style="display: flex; justify-content:space-between">
                 {% csrf_token %}
                 {{form.name}}
-                <form type="submit" class="btn btn-lg btn-secondary" value="Submit">
+                <input type="submit" class="btn btn-lg btn-secondary" value="Submit">
             </form>
             {% for task in tasks %}
             <div class="list-group-item list-group-item-action list-group-item-secondary bg-transparent text-dark" id="list-item-container">
