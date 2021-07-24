@@ -23,7 +23,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'viewprofile'  %}">Profile</a>
                 </li>
-                {% if user.username == 'admin' %}
+                {% if user.is_supersuser %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/admin/">Admin panel</a>
                     </li>
