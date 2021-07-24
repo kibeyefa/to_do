@@ -50,6 +50,12 @@
 <!-- mainbody -->
     {% if empty %}
         <div class="p-5 mb-4 rounded-3">
+            <form method="POST" style="display: flex; justify-content:space-between">
+                {% csrf_token %}
+                {{form.name}}
+                <input type="submit" class="btn btn-lg btn-secondary" value="Submit">
+            </form>
+            
             <div class="container-fluid py-5">
                 <h1 class="display-5 fw-bold">Welcome {{ user.userprofile.first_name.capitalize }}. You have no tasks</h1>
                 <p class="col-md-8 fs-4">Try adding tasks. Use the from at the top right to add or tasks</p>
