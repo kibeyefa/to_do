@@ -1,0 +1,43 @@
+div.list-group{
+    width: 60%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+#list-item-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+    div.list-group{
+        width: 90%;
+    }
+}
+
+@media (max-width: 700px) {
+    div.list-group{
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+input#input-form{
+    flex-basis: 60%;
+}
+
+input[type="submit"]{
+    flex-basis: 30%;
+}
+div span{
+    font-weight: bolder;
+    font-size: larger;
+    padding-bottom: 3px;
+}
+
+
+
+main#profile-card{
+    padding: 15px 15px;
+    color: black;
+}

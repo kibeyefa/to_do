@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signin.css' %}">
+</head>
+<body class=" {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %}">
+
+    <main class="form-signin">
+        <a href="/" class="btn btn-dark mb-2">Home</a>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" class="form-control" placeholder="First name" name="first_name" value="{{request.user.userprofile.first_name}}">
+            <input type="text" class="form-control" placeholder="Last name" name="last_name" value="{{request.user.userprofile.last_name}}">
+            
+            <div class="mb-3 form-check">
+                <input type="checkbox" name="dark_mode" id="darkmode" class="form-check-input" {% if request.user.userprofile.dark_mode %} checked {% endif %}>
+                <label class="form-check-label" for="darkmode">Darkmode</label>
+            </div>
+            <input type="submit" value="Save Changes" class="btn btn-dark">
+        </form>
+
+    </main>
+
+
+
+    <script src="{% static 'js/bootstrap.js'%}"></script>
+</body>
+</html>
+

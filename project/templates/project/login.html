@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page == 'login' %}Login{% else %}Sign UP{% endif %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signin.css' %}">
+</head>
+
+<body class="text-center">
+
+    {% if page == "login" %}
+        <main class="form-signin">
+            <form method="POST">
+                {% csrf_token %}
+                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
+                    <label for="floatingInput">Username</label>
+                </div>
+                
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+        
+                <button class="w-100 btn btn-lg btn-dark" type="submit">Login</button>
+                <p class="alert">Don't have an account? <a href="{% url 'signup' %}" class="btn btn-outline-dark">Sign up</a></p>
+
+            </form>
+        </main>
+    {% else %}
+        <main class="form-signin">
+            <form method="POST">
+                {% csrf_token %}
+                <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+                
+                <div class="form-floating">
+                    {{ form.username }}
+                    <label for="floatingInput">Create Username</label>
+                </div>
+                
+                <div class="form-floating">
+                    {{ form.password1 }}
+                    <label for="floatingPassword">Create password</label>
+                </div>
+                
+                <div class="form-floating">
+                    {{ form.password2 }}
+                    <label for="floatingPassword2">Confirm password</label>
+                </div>
+                
+                <button class="w-100 btn btn-lg btn-dark" type="submit">Sign up</button>
+                <p class="alert">Already have an account? <a href="{% url 'login' %}" class="btn btn-outline-dark">Login</a></p>
+            </form>
+        </main>
+    {% endif %}
+
+    <script src="{% static 'js/bootstrap.js'%}"></script>
+</body>
+</html>

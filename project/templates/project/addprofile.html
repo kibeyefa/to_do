@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signin.css' %}">
+</head>
+<body class="bg-secondary">
+<main class="form-signin">
+    <form method="POST">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 fw-bolder">Add profile</h1>
+
+        <div class="form-floating">
+            {{ form.first_name }}
+            <label for="floatingInput">Enter Firstname</label>
+        </div>
+        <div class="form-floating">
+            {{ form.last_name }}
+            <label for="floatingPassword">Enter Lastname</label>
+        </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                {{ form.dark_mode }} Darkmode
+            </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-dark" type="submit">Add profile</button>
+
+    </form>
+</main>
+
+
+
+    <script src="{% static 'js/bootstrap.js'%}"></script>
+</body>
+</html>
+

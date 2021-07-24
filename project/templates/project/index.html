@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do App</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body class="{% if request.user.userprofile.dark_mode %}bg-secondary{% endif %}">
+    
+<!-- navbar -->
+    <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand">To do App</a>
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'logout'  %}">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'viewprofile'  %}">Profile</a>
+                </li>
+                {% if user.username == 'admin' %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/">Admin panel</a>
+                    </li>
+                {% endif %}
+            </ul>
+                <form method="POST" style="display: flex; justify-content: space-between">
+                    {% csrf_token %}
+                    {{form.name}}
+                    <input type="submit" class="btn-sm btn btn-secondary" value="Submit">
+                </form>
+            </div>
+        </div>
+    </nav>
+<!-- end of navbar -->
+
+
+<!-- mainbody -->
+    {% if empty %}
+        <div class="p-5 mb-4 rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">Welcome {{ user.userprofile.first_name.capitalize }}. You have no tasks</h1>
+                <p class="col-md-8 fs-4">Try adding tasks. Use the from at the top right to add or tasks</p>
+            </div>
+        </div>
+    {% else  %}
+        <div class="list-group">
+            {% for task in tasks %}
+            <div class="list-group-item list-group-item-action list-group-item-secondary bg-transparent text-dark" id="list-item-container">
+                <h4>{{task.name}}</h4>
+                <span class="links-container">
+                    <a href="{% url 'edit' task.id %}" style="margin-right: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-pen"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+                        </svg>
+                    </a>
+                    <a href=" {% url 'delete' task.id  %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blaxk" class="bi bi-x-circle-fill"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                        </svg>
+                    </a>
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+<!-- end of main body -->
+
+
+    <script src="{% static 'js/bootstrap.js'%}"></script> 
+</body>
+</html>

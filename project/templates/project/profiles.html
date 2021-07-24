@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+</head>
+<body class="{% if profile.dark_mode %} bg-secondary{% endif %}">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+        <div class="container-fluid">
+            <span style="color: aliceblue;">To do App</span>
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'logout'  %}">Logout</a>
+                </li>
+                {% if user.username == 'admin' %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/admin/">Admin panel</a>
+                </li>
+                {% endif %}
+            </ul>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Go home</a>
+        </div>
+        </div>
+    </nav>
+
+    <main class="col-lg-4 col-12  {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %} mx-auto" id="profile-card">
+        <div class="card  {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %}"">
+            <div class="card-body  {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %}"">
+                <h1 class="card-title fw-bolder">{{ user.username }}</h1>
+                <p class="card-text fs-4">Profile page for {{ user.username }}.</p>
+            </div>
+            <ul class="list-group list-group-flush  {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %}"">
+                <li class="list-group-item  {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %}" text-black fw-bold">Firstname: {{ profile.first_name.capitalize }}</li>
+                <li class="list-group-item  {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %}" text-black fw-bold">Lastname: {{ profile.last_name.capitalize }}</li>
+                <li class="list-group-item  {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %}" text-black fw-bold">Darkmode: {{ profile.dark_mode }}</li>
+            </ul>
+            <div class="card-body">
+                <a href="{% url 'editprofile' %}" class="card-link btn btn-dark">Edit profile</a>
+            </div>
+        </div>
+    </main>
+    
+</body>
+</html>
