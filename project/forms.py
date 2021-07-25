@@ -11,7 +11,8 @@ class TaskForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(TaskForm, self).__init__(*args, **kwargs)
-        self.fields['name'].widget.attrs.update({'class': 'form-control form-control-sm bg-secondary bg-outline-secondary', 'id':'input-form'})
+        self.fields['name'].widget.attrs.update(
+            {'class': 'form-control form-control-lg flex-column  col-5 ', 'id': 'input-form'})
 
 
 class CustomUserCreationForm(UserCreationForm):

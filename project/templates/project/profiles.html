@@ -37,9 +37,9 @@
     </div>
 </nav>
 
-    <main class="col-lg-4 col-12  {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %} mx-auto" id="profile-card">
-        <div class="card  {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %}"">
-            <div class="card-body  {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %}"">
+    <main class="col-lg-4 col-11 {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %} mx-auto my-4" id="profile-card">
+        <div class="card  {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %} mx-md-2">
+            <div class="card-body  {% if request.user.userprofile.dark_mode %}bg-secondary{% endif %}">
                 <h1 class="card-title fw-bolder">{{ user.username }}</h1>
                 <p class="card-text fs-4">Profile page for {{ user.username }}.</p>
             </div>
