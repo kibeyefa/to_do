@@ -23,6 +23,14 @@
         width: 104%;
     }
 }
+@media (max-width: 480px) {
+    div#list-item-container span{
+        flex-wrap: wrap;
+    }
+    #list-item-container{
+        width: 106%;
+    }
+}
 
 #list-item-container{
     display: flex;
