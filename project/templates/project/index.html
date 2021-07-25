@@ -49,7 +49,7 @@
         <form method="POST" class=" form-row container col-lg-4 mb-3 flex-row">
             {% csrf_token %}
             {{form.name}}
-            <input type="submit" class="btn btn-lg btn-dark  col-12 mt-2 col-lg-12" value="Add Task">
+            <input type="submit" class="btn btn-lg btn-dark  col-12 mt-2" value="Add Task">
         </form>
 
         <!-- col-lg-8 col-md-12 -->
@@ -64,10 +64,10 @@
             {% else %}
             <div class="list-group container">
                 {% for task in tasks %}
-                <div class="list-group-item  bg-transparent text-dark"
-                    id="list-item-container" style="width: 104%;">
+                <div class="list-group-item bg-transparent text-dark "
+                    id="list-item-container">
                     <h4>{{task.name}}</h4>
-                    <span class="flex-wrap flex-row justify-content-between">
+                    <span class="">
                         <a href="{% url 'edit' task.id %}" style="margin-right: 15px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-pen"
                                 viewBox="0 0 16 16">
