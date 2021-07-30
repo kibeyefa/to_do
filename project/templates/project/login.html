@@ -18,7 +18,14 @@
             <form method="POST">
                 {% csrf_token %}
                 <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-        
+
+                {% if is_invalid %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Incorrect Username or password
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+
                 <div class="form-floating">
                     <input type="text" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
                     <label for="floatingInput">Username</label>
@@ -39,6 +46,20 @@
             <form method="POST">
                 {% csrf_token %}
                 <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+
+                {% if pass_not_match %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Passwords don't match
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+
+                {% if invalid_password %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Password not valid
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
                 
                 <div class="form-floating">
                     {{ form.username }}

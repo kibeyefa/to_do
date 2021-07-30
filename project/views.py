@@ -57,6 +57,7 @@ def viewProfile(request):
 
 def loginPage(request):
     page = 'login'
+    is_invalid = False
 
     if request.method =="POST":
         username = request.POST['username']
@@ -67,9 +68,13 @@ def loginPage(request):
         if user is not None:
             login(request, user)
             return redirect('home')
+        else:
+            is_invalid = True
+            return render(request, 'project/login.html', {'page':page, 'is_invalid': is_invalid})
 
     return render(request, 'project/login.html', {
-        'page': page
+        'page': page,
+        'is_invalid': is_invalid
     })
 
 
@@ -79,6 +84,8 @@ def logoutPage(request):
 
     
 def signupPage(request):
+    invalid_password = False
+    pass_not_match = False
     page = 'signup'
     form = CustomUserCreationForm()
 
@@ -92,10 +99,23 @@ def signupPage(request):
             if user is not None:
                 login(request, user)
                 return redirect('addprofile')
+        else:
+            if request.POST['password1'] != request.POST['password2']:
+                pass_not_match = True
+            else:
+                invalid_password = True
+            return render(request, 'project/login.html', {
+                'page': page,
+                'form': form,
+                'pass_not_match': pass_not_match,
+                'invalid_password': invalid_password,
+            })
 
     return render(request, 'project/login.html', {
-        'page': page, 
+        'page': page,
         'form': form,
+        'pass_not_match': pass_not_match,
+        'invalid_password': invalid_password,
     })
 
 
